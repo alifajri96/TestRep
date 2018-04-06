@@ -1,0 +1,36 @@
+﻿@model Test.Models.ApplicationRole
+
+@{
+    ViewData["Title"] = "Details";
+}
+@{
+    ViewData["Title"] = "Details";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>@ViewData["Title"]</h1>
+</section>
+
+<section class="content">
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt>
+                Deskripsi
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ConcurrencyStamp)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+</section>

@@ -1,0 +1,45 @@
+﻿@model Test.Model.Artikel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>@ViewData["Title"]</h1>
+</section>
+
+<section class="content">
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Judul)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Judul)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Deskripsi)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Deskripsi)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Kategori)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Kategori.ID)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ImageName)
+            </dt>
+            <dd>
+                <img src="~/uploads/img/@Html.DisplayFor(model => model.ImageName)" width="200" height="200"  alt="@Html.DisplayFor(model => model.ImageName)" />   
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+    </section>

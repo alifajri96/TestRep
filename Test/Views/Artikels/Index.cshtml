@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Test.Model.Artikel>
+
+@{
+
+    ViewData["Title"] = "Artikel";
+    Layout = "_Layout2";
+}
+
+<div class="container">
+    <div class="row mar-bot40">
+        <div class="col-md-12">
+            <div class="section-header">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Judul)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Deskripsi)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Kategori)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Judul)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Deskripsi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Kategori.ID)
+                                </td>
+                                <td>
+                                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                </div>
+</div>
+</div>
+</div>

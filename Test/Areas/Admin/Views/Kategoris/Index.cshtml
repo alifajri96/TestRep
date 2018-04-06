@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Test.Model.Kategori>
+
+@{
+    ViewData["Title"] = "Kategori";
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>@ViewData["Title"]</h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-body">
+                    <table class="table table-bordered table-striped" id="myTable">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Nama)
+                                </th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Nama)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Details" asp-route-id="@item.ID"><i class="fa fa-file-text-o"></i></a> &nbsp;&nbsp;&nbsp;
+                                        <a asp-action="Edit" asp-route-id="@item.ID"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
+                                        <a asp-action="Delete" asp-route-id="@item.ID"><i class="fa fa-remove"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

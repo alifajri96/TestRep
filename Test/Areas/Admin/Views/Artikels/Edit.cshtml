@@ -1,0 +1,56 @@
+﻿@model Test.Model.Artikel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>@ViewData["Title"]</h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit" enctype="multipart/form-data" asp-controller="Artikels"  method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Judul" class="control-label"></label>
+                    <input asp-for="Judul" class="form-control" />
+                    <span asp-validation-for="Judul" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Deskripsi" class="control-label"></label>
+                    <textarea name="Deskripsi" class="form-control" rows="3">@Html.DisplayFor(model => model.Deskripsi)</textarea>
+                    <span asp-validation-for="Deskripsi" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ID_Kategori" class="control-label"></label>
+                    <select asp-for="ID_Kategori" class="form-control" asp-items="ViewBag.Nama">
+                        <option>--Pilih Kategori--</option>
+                    </select>
+                    <span asp-validation-for="ID_Kategori" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageName" class="control-label">Gambar</label>
+                        <input asp-for="ImageName" type="file" class="form-control" />
+                    <br />
+                    <img src="~/uploads/img/@Html.DisplayFor(model => model.ImageName)" width="200" height="200" alt="@Html.DisplayFor(model => model.ImageName)" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+    </section>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

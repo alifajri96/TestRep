@@ -1,0 +1,17 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "Profile";
+    ViewData.AddActivePage(ManageNavPages.Index);
+    Layout = "";
+}
+
+
+@if (User.IsInRole("Admin"))
+{
+    Html.RenderPartial("_user2");
+}
+
+@if (User.IsInRole("User"))
+{
+    Html.RenderPartial("_user1");
+}
