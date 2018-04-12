@@ -12,6 +12,7 @@ using Test.Data;
 using Test.Models;
 using Test.Services;
 using Microsoft.AspNetCore.Mvc.Razor;
+using ReflectionIT.Mvc.Paging;
 
 namespace Test
 {
@@ -27,6 +28,7 @@ namespace Test
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddDbContext<ApplicationDbContext>(opt => opt.UseInMemoryDatabase("TodoList"));
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -47,8 +49,9 @@ namespace Test
                 options.AreaViewLocationFormats.Add("/Admin/{2}/Views/Shared/{0}.cshtml");
                 options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
             });
-
+            services.AddPaging();
             services.AddMvc();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

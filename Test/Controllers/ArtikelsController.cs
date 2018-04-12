@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
+using ReflectionIT.Mvc.Paging;
 using Test.Data;
 using Test.Model;
 
@@ -26,9 +27,11 @@ namespace Test.Controllers
         }
 
         // GET: Artikels
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
             var applicationDbContext = _context.Artikel.Include(a => a.Kategori);
+            var qry = _context.Artikel.AsNoTracking().OrderBy(p => p.Id);
+            var model = await PagingList.CreateAsync(qry, 2, page);
             return View(await applicationDbContext.ToListAsync());
         }
 

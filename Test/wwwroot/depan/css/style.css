@@ -24,6 +24,47 @@ body {
 	text-shadow: none;
     max-height:100%;
 }
+.container2 {
+    font-size: 18px;
+    height: 200px;
+    border: 1px solid silver;
+    overflow: hidden;
+    position: relative;
+    background: white;
+    margin-bottom: 1em;
+    width:100%;
+    border:0;
+}
+    .container2:after {
+        content: '...';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 0 0.3em;
+        background: inherit;
+    }
+
+    .container2 p:after {
+        content: '\0000a0';
+        position: absolute;
+        width: 1000px;
+        z-index: 1;
+        background: white;
+    }
+/*.truncate {
+    height: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}*/
+img {
+    height: 230px !important;
+}
+
+.cover {
+    width: 100%;
+    object-fit: cover;
+}
 
 .clear {
 	clear: both;

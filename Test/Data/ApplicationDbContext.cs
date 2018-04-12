@@ -15,6 +15,7 @@ namespace Test.Data
         public virtual DbSet<ApplicationRole> ApplicationRole { get; set; }
         public virtual DbSet<Kategori> Kategori { get; set; }
         public virtual DbSet<Testarea> Testarea { get; set; }
+        public virtual DbSet<TodoItem> TodoItem { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
