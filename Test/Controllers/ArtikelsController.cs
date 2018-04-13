@@ -29,10 +29,11 @@ namespace Test.Controllers
         // GET: Artikels
         public async Task<IActionResult> Index(int page = 1)
         {
-            var applicationDbContext = _context.Artikel.Include(a => a.Kategori);
-            var qry = _context.Artikel.AsNoTracking().OrderBy(p => p.Id);
-            var model = await PagingList.CreateAsync(qry, 2, page);
-            return View(await applicationDbContext.ToListAsync());
+//            var getKategori = _context.Artikel.Include(a => a.Kategori);
+            //ViewBag.Nama = _context.Artikel.Include(a => a.Kategori);
+            var qry = _context.Artikel.AsNoTracking().Include(a=>a.Kategori).OrderBy(p => p.Id);
+            var model = await PagingList.CreateAsync(qry, 3, page);
+            return View(model);
         }
 
         // GET: Artikels/Details/5
@@ -255,6 +256,19 @@ namespace Test.Controllers
         private bool ArtikelExists(int id)
         {
             return _context.Artikel.Any(e => e.Id == id);
+        }
+
+        public async Task<IActionResult> Kategori(int? id)
+        {
+            //            var getKategori = _context.Artikel.Include(a => a.Kategori);
+            //ViewBag.Nama = _context.Artikel.Include(a => a.Kategori);
+            //var qry = _context.Artikel.AsNoTracking().Include(a => a.Kategori)
+            //    .SingleOrDefaultAsync(p => p.Kategori.Nama == kategori);
+            //return View(qry);
+            var qry = _context.Artikel.AsNoTracking().Include(a => a.Kategori).Where(p=>p.ID_Kategori == id);
+            
+            return View(qry);
+
         }
     }
 }

@@ -1,11 +1,7 @@
-﻿@model ReflectionIT.Mvc.Paging.PagingList<Test.Model.Artikel>
-@using ReflectionIT.Mvc.Paging
-@addTagHelper *, ReflectionIT.Mvc.Paging
-@*@model IEnumerable<Test.Model.Artikel>*@
+﻿@model IEnumerable<Test.Model.Artikel>
 
 @{
-
-    ViewData["Title"] = "Artikel";
+    ViewData["Title"] = "Index";
     Layout = "_Layout2";
 }
 
@@ -27,18 +23,12 @@
                                 <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary" role="button">Read More</a>
                                 <br />
                                 kategori : @Html.DisplayFor(modelItem => item.ID_Kategori),
-                                nama :  <a asp-action="Kategori" asp-controller="Artikels" asp-route-id="@item.Kategori.ID"> @Html.DisplayFor(modelItem => item.Kategori.Nama)</a>
+                                nama :  <a asp-action="Index" asp-controller="Kategoris"> @Html.DisplayFor(modelItem => item.Kategori.Nama)</a>
                             </div>
                         </div>
                     }
                 </div>
-
-                <nav aria-label="Suppliers navigation example">
-                    <vc:pager paging-list="@Model" />
-                </nav>
             </div>
         </div>
     </div>
-
-
 </div>

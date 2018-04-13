@@ -23,9 +23,15 @@ namespace Test.Controllers
             return View();
         }
 
-        [Authorize]
 
         public IActionResult Contact()
+        {
+            ViewData["Message"] = "Your contact page.";
+
+            return View();
+        }
+
+        public IActionResult test()
         {
             ViewData["Message"] = "Your contact page.";
 
