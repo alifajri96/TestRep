@@ -1,18 +1,159 @@
-﻿@{
-    ViewData["Title"] = "Admin Page";
+﻿@model IEnumerable<Test.Model.Artikel>
+@{
+    ViewData["Title"] = "Dashboard";
 }
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
-    <h1>Ini Header</h1>
+    <h1>@ViewData["Title"]</h1>
 </section>
 
 <!-- Main content -->
 <section class="content">
     <div class="row">
-        <div class="col-md-12">
-            Ini Isi
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-aqua"><i class="fa fa-book"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Artikel</span>
+                    <span class="info-box-number">@ViewData["ArtikelCount"]</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
         </div>
+        <!-- /.col -->
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-red"><i class="fa fa-align-justify"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Kategori</span>
+                    <span class="info-box-number">@ViewData["KategoriCount"]</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <!-- fix for small devices only -->
+        <div class="clearfix visible-sm-block"></div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-green"><i class="fa fa-user"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Role</span>
+                    <span class="info-box-number">@ViewData["RoleCount"]</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        @*<div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">New Members</span>
+                        <span class="info-box-number">2,000</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>*@
+
+        @*<div class="col-md-4">
+                <canvas id="myChart" width="400" height="400"></canvas>
+            </div>*@
+        <br />
+        <br />
+
+        <br />
+        <br />
+        <br />
+
+        <br />
+
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">Line Chart</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+            </div>
+            <div class="box-body chart-responsive">
+                <div class="chart" id="line-chart" style="height: 300px;"></div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+
+
+        <!-- /.col -->
     </div>
+    <!-- /.row -->
 </section>
 <!-- /.content -->
+@*<script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'line',
+
+            // The data for our dataset
+            data: {
+
+                labels: ["January"],
+                datasets: [{
+                    label: "My First dataset",
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(98, 255, 166)',
+                    data: [@ViewData["ArtikelCount"] = _context.Artikel.Count()],
+                }]
+            },
+
+            // Configuration options go here
+            options: {
+            }
+        });
+    </script>*@
+<!-- Morris.js charts -->
+<script src="~/js/jquery-3.3.1.min.js"></script>
+<script src="~/adminlte/bower/raphael/raphael.min.js"></script>
+<script src="~/adminlte/bower/morris/morris.js"></script>
+<script type="text/javascript">
+    $(function () {
+        "use strict";
+        // LINE CHART
+        $.ajax({
+            type: "GET",
+            url: "/Admin/ApiArtikels/geta",
+           
+            dataType: "json",
+            success: function (data) {
+                var line = new Morris.Line({
+                    element: 'line-chart',
+                    resize: true,
+                    data: data,
+                    xkey: 'y',
+                    ykeys: ['item1'],
+                    labels: ['Item 1'],
+                    lineColors: ['#3c8dbc'],
+                    hideHover: 'auto'
+                });
+                console.log(data);
+            }, //End of AJAX Success function
+
+            failure: function (data) {
+                alert("gagal load data");
+            }, //End of AJAX failure function
+            error: function (data) {
+                alert("eror");
+            } //End of AJAX error function
+
+        });
+
+        
+    });
+</script>

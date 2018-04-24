@@ -26,8 +26,8 @@
                                 </div>
                                 <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary" role="button">Read More</a>
                                 <br />
-                                kategori : @Html.DisplayFor(modelItem => item.ID_Kategori),
-                                nama :  <a asp-action="Kategori" asp-controller="Artikels" asp-route-id="@item.Kategori.ID"> @Html.DisplayFor(modelItem => item.Kategori.Nama)</a>
+                                <i class="fa fa-calendar"></i>  @Html.DisplayFor(modelItem => item.CreateAt),
+                                Kategori :  <a asp-action="Kategori" asp-controller="Artikels" asp-route-id="@item.Kategori.ID"> @Html.DisplayFor(modelItem => item.Kategori.Nama)</a>
                             </div>
                         </div>
                     }

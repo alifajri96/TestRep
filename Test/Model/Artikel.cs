@@ -21,6 +21,12 @@ namespace Test.Model
         [Required]
         public string Deskripsi { get; set; }
 
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Create At")]
+        public DateTime CreateAt { get; set; }
+
         [Display(Name = "Nama Kategori")]
         public int ID_Kategori { get; set; }
         [ForeignKey("ID_Kategori")]

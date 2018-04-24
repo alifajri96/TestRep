@@ -1,10 +1,4 @@
-﻿@*@using Microsoft.AspNetCore.Identity
-    @using Test.Models
-
-    @inject SignInManager<ApplicationUser> SignInManager
-    @inject UserManager<ApplicationUser> UserManager*@
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -33,7 +27,7 @@
         <!-- bootstrap wysihtml5 - text editor -->
         <link rel="stylesheet" href="~/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
         <!-- Morris chart -->
-        @*<link rel="stylesheet" href="~/adminlte/bower/morris/morris.css">*@
+        <link rel="stylesheet" href="~/adminlte/bower/morris/morris.css">
         <!-- DataTables -->
         <link rel="stylesheet" href="~/adminlte/bower/datatables.net-bs/css/dataTables.bootstrap.min.css">
     </environment>
@@ -125,6 +119,7 @@
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MAIN NAVIGATION</li>
                     <li class="active"><a href="/Admin"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+                   @* <li class="active"><a asp-area="Admin" asp-controller="Home" asp-action="Index"><i class="fa fa-dashboard"></i>Dashboard</a></li>*@
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-circle-o"></i>
@@ -140,7 +135,7 @@
                         </ul>
                     </li>
 
-            </section>
+</section>
             <!-- /.sidebar -->
         </aside>
 
@@ -192,9 +187,7 @@
         <script src="~/adminlte/dist/js/pages/dashboard.js"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="~/adminlte/dist/js/demo.js"></script>
-        <!-- Morris.js charts -->
-        @*<script src="~/adminlte/bower/raphael/raphael.min.js"></script>
-            <script src="~/adminlte/bower/morris/morris.min.js"></script>*@
+        
         <!-- DataTables -->
         <script src="~/adminlte/bower/datatables.net/js/jquery.dataTables.min.js"></script>
         <script src="~/adminlte/bower/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
@@ -219,6 +212,8 @@
                 }).draw();
             });
         </script>
+
+        
     </environment>
 
 

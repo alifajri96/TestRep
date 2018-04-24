@@ -13,6 +13,9 @@
                     <h2 class="section-heading animated">@Html.DisplayFor(model => model.Judul)</h2>
                     <img src="~/uploads/img/@Html.DisplayFor(model => model.ImageName)" width="100%" alt="@Html.DisplayFor(model => model.ImageName)" />
                     <p style="text-align:left;">@Html.DisplayFor(model => model.Deskripsi)</p>
+                    <br />
+                    <i class="fa fa-calendar"></i>  @Html.DisplayFor(model => model.CreateAt),
+                    Kategori :  <a asp-action="Kategori" asp-controller="Artikels" asp-route-id="@Model.Kategori.ID"> @Html.DisplayFor(modelItem => modelItem.Kategori.Nama)</a>
                 </div>
                 </div>
             </div>

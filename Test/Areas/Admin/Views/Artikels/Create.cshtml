@@ -14,7 +14,7 @@
 <section class="content">
     <div class="row">
         <div class="col-md-12">
-            <form asp-action="Create" enctype="multipart/form-data" asp-controller="Artikels"  method="post">
+            <form asp-action="Create" enctype="multipart/form-data" asp-controller="Artikels" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Judul" class="control-label"></label>
@@ -34,8 +34,13 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="ImageName" class="control-label">Gambar</label>
-                        <input asp-for="ImageName" type="file" class="form-control" />
-                </div>                
+                    <input asp-for="ImageName" type="file" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="CreateAt" class="control-label"></label>
+                    <input asp-for="CreateAt" class="form-control" />
+                    <span asp-validation-for="CreateAt" class="text-danger"></span>
+                </div>
                 <div class="form-group">
                     <input type="submit" value="Create" class="btn btn-default" />
                 </div>

@@ -174,7 +174,8 @@ namespace Test.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
+            var artikel = await _context.Artikel.SingleOrDefaultAsync(m => m.Id == id);
+           
             if (ModelState.IsValid)
             {
                 try
@@ -184,23 +185,38 @@ namespace Test.Areas.Admin.Controllers
                     {
                         if (Image != null && Image.Length > 0)
                         {
-                            var file = Image;
-                            //There is an error here
-                            var uploads = Path.Combine(_env.WebRootPath, "uploads\\img");
-                            if (file.Length > 0)
+                            if (!string.IsNullOrWhiteSpace(Image.FileName))
                             {
-                                var fileName = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(file.FileName);
-                                using (var fileStream = new FileStream(Path.Combine(uploads, fileName), FileMode.Create))
-                                {
-                                    await file.CopyToAsync(fileStream);
-                                    emp.ImageName = fileName;
-                                }
+                                var file = Image;
 
+                                //There is an error here
+                                var uploads = Path.Combine(_env.WebRootPath, "uploads\\img");
+
+                                if (file.Length > 0)
+                                {
+                                    var fileName = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(file.FileName);
+                                    var filemage = Path.Combine(uploads, fileName);
+                                    using (var fileStream = new FileStream(filemage, FileMode.Create))
+                                    {
+                                        await file.CopyToAsync(fileStream);
+                                        artikel.ImageName = fileName;
+                                    }
+
+                                }
                             }
+                            
+                        }
+                        else
+                        {
+                            var errors = ModelState.Values.SelectMany(v => v.Errors);
                         }
                     }
-                    _context.Add(emp);
-                    _context.Update(emp);
+                  
+                    artikel.ID_Kategori = emp.ID_Kategori;
+                    artikel.Judul = emp.Judul;
+                    artikel.Deskripsi = emp.Deskripsi;
+                    artikel.CreateAt = emp.CreateAt;
+                    _context.Update(artikel);
                     await _context.SaveChangesAsync();
                     return RedirectToAction("Index");
                 }

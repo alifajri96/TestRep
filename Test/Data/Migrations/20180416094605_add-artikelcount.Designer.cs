@@ -12,9 +12,10 @@ using Test.Data;
 namespace Test.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180416094605_add-artikelcount")]
+    partial class addartikelcount
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -145,7 +146,8 @@ namespace Test.Data.Migrations
 
                     b.Property<int>("ID_Kategori");
 
-                    b.Property<string>("ImageName");
+                    b.Property<string>("ImageName")
+                        .IsRequired();
 
                     b.Property<string>("Judul")
                         .IsRequired()

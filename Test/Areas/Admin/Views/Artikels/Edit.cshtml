@@ -13,7 +13,7 @@
 <section class="content">
     <div class="row">
         <div class="col-md-4">
-            <form asp-action="Edit" enctype="multipart/form-data" asp-controller="Artikels"  method="post">
+            <form asp-action="Edit" enctype="multipart/form-data" asp-controller="Artikels" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Id" />
                 <div class="form-group">
@@ -35,9 +35,14 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="ImageName" class="control-label">Gambar</label>
-                        <input asp-for="ImageName" type="file" class="form-control" />
+                    <input asp-for="ImageName" type="file" class="form-control" />
                     <br />
                     <img src="~/uploads/img/@Html.DisplayFor(model => model.ImageName)" width="200" height="200" alt="@Html.DisplayFor(model => model.ImageName)" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="CreateAt" class="control-label"></label>
+                    <input asp-for="CreateAt" class="form-control" />
+                    <span asp-validation-for="CreateAt" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Save" class="btn btn-default" />
