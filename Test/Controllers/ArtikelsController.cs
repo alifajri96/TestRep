@@ -265,8 +265,10 @@ namespace Test.Controllers
             //var qry = _context.Artikel.AsNoTracking().Include(a => a.Kategori)
             //    .SingleOrDefaultAsync(p => p.Kategori.Nama == kategori);
             //return View(qry);
+            ViewData["Count"] = _context.Kategori.Include(a=>a.Nama).ToString().ToUpper();
             var qry = _context.Artikel.AsNoTracking().Include(a => a.Kategori).Where(p=>p.ID_Kategori == id);
             
+
             return View(qry);
 
         }
